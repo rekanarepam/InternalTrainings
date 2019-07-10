@@ -1,0 +1,200 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <title>HomeTask1</title>
+    <style>
+        .fixed-header {
+            top: 0;
+        }
+
+        body {
+            padding-top: 60px;
+            padding-bottom: 40px;
+        }
+
+        .fixed-header {
+            width: 100%;
+            height: 45px;
+            position: fixed;
+            background: #022052;
+            padding: 10px 0;
+            color: #fff;
+        }
+
+        .fixed-footer {
+            bottom: 0;
+        }
+
+        .fixed-footer {
+            width: 100%;
+            position: fixed;
+            background: #022052;
+            padding: 10px 0;
+            color: #fff;
+            text-align: center;
+        }
+
+        #container {
+            width: 100%;
+            height: 1000px;
+            display: block;
+        }
+
+        .row {
+            margin-top: 2px;
+            width: 100%;
+            background-color: white;
+        }
+
+        .full-row {
+            display: block;
+            width: 100%;
+            height: 25px;
+            background-color: blue;
+        }
+
+        .title {
+            font-size: x-large;
+            color: #022052;
+        }
+
+        .button {
+            width: 150px;
+            height: 25px;
+            background-color: peru;
+            color: white;
+            text-align: center;
+            padding-top: 12px;
+            font-size: 15px;
+        }
+
+        .column1 {
+            display: inline-block;
+            width: 250px;
+            margin: 1%;
+            height: 205px;
+            background-color: silver;
+            float: left;
+        }
+
+        .column2 {
+            display: inline-block;
+            width: 400px;
+            margin: 1%;
+            height: 205px;
+            float: left;
+
+        }
+
+        .column3 {
+            display: inline-block;
+            width: 500px;
+            margin: 1%;
+            height: 205px;
+            float: left;
+
+        }
+
+        .select {
+            display: block;
+            width: 180px;
+            height: 30px;
+            margin-top: 10px;
+            border-color: black;
+
+        }
+
+        #container hr {
+            border: none;
+            height: 1px;
+            color: #ccc;
+            background-color: #ccc;
+            text-align: left;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="fixed-header">
+        <p style="padding-left:30px;">NEWSFEED&nbsp;&nbsp;&nbsp;&nbsp;<span
+                style="font-style:italic; font-size: small; display: inline-block;">Yet another newsfeed</span></p>
+
+    </div>
+    <div style="padding-top:20px;"></div>
+    <div id="container">
+        <div class="row">
+            <div class="column1"> </div>
+            <div class="column2">
+                <span class="title"> Title One</span><br />
+                <span style="font-size:10px;">Posted on 29 June,2019 //Category: Category One </span><br />
+                <p style="font-size: 13px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque odio
+                    tortor, vulputate at suscipit ac, hendrerit vitae lectus. Duis convallis risus et nunc tincidunt,
+                    non ornare sem sagittis. Ut ut mollis lorem. Vestibulum ultrices eros id mattis bibendum. Lorem
+                    ipsum dolor sit amet, consectetur adipiscing elit. Nam quis tempor sem, ut placerat sem. Fusce
+                    tristique sollicitudin orci. Donec augue libero, gravida in mattis eget, eleifend vitae orci.</p>
+                <div class="button"> Continue Reading</div>
+            </div>
+            <div class="column3">
+                <span class="title" style="font-size:12px; font-weight:bold;"> SELECT CATEGORY</span><br />
+                <select class="select">
+                    <option value="volvo">Volvo</option>
+                    <option value="saab">Saab</option>
+                    <option value="mercedes">Mercedes</option>
+                    <option value="audi">Audi</option>
+                </select>
+                <br />
+                <span class="title" style="font-size:12px; font-weight:bold; "> SUBSCRIIBE</span><br />
+                <input type="text" style="width:90px;" />
+                <input type="submit" value="Submit" style="width:80px; color:white; background-color:#022052;">
+
+            </div>
+
+        </div>
+        <hr />
+        <div class="row">
+            <div class="column1"> </div>
+            <div class="column2">
+                <span class="title"> Title One</span><br />
+                <span style="font-size:10px;">Posted on 29 June,2019 //Category: Category One </span><br />
+                <p style="font-size: 13px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque odio
+                    tortor, vulputate at suscipit ac, hendrerit vitae lectus. Duis convallis risus et nunc tincidunt,
+                    non ornare sem sagittis. Ut ut mollis lorem. Vestibulum ultrices eros id mattis bibendum. Lorem
+                    ipsum dolor sit amet, consectetur adipiscing elit. Nam quis tempor sem, ut placerat sem. Fusce
+                    tristique sollicitudin orci. Donec augue libero, gravida in mattis eget, eleifend vitae orci.</p>
+                <div class="button"> Continue Reading</div>
+
+            </div>
+            <div class="column3">
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="column1"> </div>
+            <div class="column2">
+                <span class="title"> Title One</span><br />
+                <span style="font-size:10px;">Posted on 29 June,2019 //Category: Category One </span><br />
+                <p style="font-size: 13px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque odio
+                    tortor, vulputate at suscipit ac, hendrerit vitae lectus. Duis convallis risus et nunc tincidunt,
+                    non ornare sem sagittis. Ut ut mollis lorem. Vestibulum ultrices eros id mattis bibendum. Lorem
+                    ipsum dolor sit amet, consectetur adipiscing elit. Nam quis tempor sem, ut placerat sem. Fusce
+                    tristique sollicitudin orci. Donec augue libero, gravida in mattis eget, eleifend vitae orci.</p>
+                <div class="button"> Continue Reading</div>
+
+            </div>
+            <div class="column3">
+            </div>
+        </div>
+        <hr />
+
+    </div>
+    <div style="padding-bottom:40px;"></div>
+    <div class="fixed-footer">
+        <div class="footercontainer"> &copy; News Feed 2019</div>
+    </div>
+</body>
+
+</html>

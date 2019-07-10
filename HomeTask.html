@@ -71,12 +71,21 @@
             height: 200px;
             /*background-color: silver;*/
             position:absolute;
+            margin:10px;
             /*overflow: auto;*/
             color:black;
            /*overflow: hidden;*/
            font-size:10px;
            /*color:black;
            padding-top:150px;*/
+        }
+        .half-row3 {
+            display: inline-block;
+            /* width: 400px; */
+            height: 200px;
+            margin: 10px;
+            position:absolute;
+            
         }
 
         
@@ -93,6 +102,29 @@
             padding-top: 12px;
             font-size: 15px;
         }   
+        /* .third-row1{
+    display:inline-block;
+    width:16%;
+    margin:1%;
+    height:200px;
+    background-color: silver;
+}
+.third-row2{
+    display:inline-block;
+    width:30%;
+    margin:10px;
+    height:200px;
+    color:black;
+    font-size:10px;
+    position:absolute;
+}
+.third-row3{
+    display:inline-block;
+    width:20%;
+    margin:1%;
+    height:200px;
+    border:yellow;
+} */
     </style>
 </head>
 <body>
@@ -102,21 +134,38 @@
     </div>
     <div style="padding-top:20px;"></div>
     <div id="container">
-        <!--<div class="row">
-        <div class="full-row">
-
-        </div>
-    </div>-->
+            <!-- <div class="row">
+                    <div class="third-row1"></div>
+                    <div class="third-row2">
+                            <span class="title"> Title One</span><br/>
+                            
+                        <span>Posted on 29 June,2019 //Category: Category One </span><br />
+                        <p style="font-size: 13px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque odio tortor, vulputate at suscipit ac, hendrerit vitae lectus. Duis convallis risus et nunc tincidunt, non ornare sem sagittis. Ut ut mollis lorem. Vestibulum ultrices eros id mattis bibendum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam quis tempor sem, ut placerat sem. Fusce tristique sollicitudin orci. Donec augue libero, gravida in mattis eget, eleifend vitae orci.</p>
+                        <div class="button"> Continue Reading</div>
+                    </div>
+                    <div class="third-row3"></div>
+                </div> -->
 
         <div class="row">
             <div class="half-row1"></div>
             <div class="half-row2">
                 <span class="title"> Title One</span><br/>
                     <!--<span>Title One</span>-->
-                <span>Posted on 29 June,2019 //Category: Category One </span><br />
+                <span>Posted on 29 June,2019 //Category: Category One </span>
+                <div style="display:inline-block; padding-left: 10px;"> 
+                        <select>
+                                <option value="volvo">Volvo</option>
+                                <option value="saab">Saab</option>
+                                <option value="mercedes">Mercedes</option>
+                                <option value="audi">Audi</option>
+                              </select>
+                 </div>
                 <p style="font-size: 13px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque odio tortor, vulputate at suscipit ac, hendrerit vitae lectus. Duis convallis risus et nunc tincidunt, non ornare sem sagittis. Ut ut mollis lorem. Vestibulum ultrices eros id mattis bibendum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam quis tempor sem, ut placerat sem. Fusce tristique sollicitudin orci. Donec augue libero, gravida in mattis eget, eleifend vitae orci.</p>
+                
                 <div class="button"> Continue Reading</div>
+              
             </div>
+            
             
         </div>
         <div class="row">
