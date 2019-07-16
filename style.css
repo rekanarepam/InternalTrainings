@@ -76,6 +76,12 @@ header {
     font-weight: bold;
     text-decoration: none;
 }
+.poststhird h1 {
+    font-size: 20px;
+    color: #333333;
+    font-weight: bold;
+    text-decoration: none;
+}
 
 .side-box {
     width: 220px;
