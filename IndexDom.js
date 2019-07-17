@@ -9,6 +9,7 @@ var storeData = function () {
     let TV9 = {
         title: ["HeadLines", "StateNews","International","National","ScienceAndTechnology","Food","Sports","Geography","History","Entertainment"],
         Description: [
+
             "Flood situation in Assam continues to deteriorate\
             even further as the water level is rising at a speed\
             of 2 - 3 cm per hour in Guwahati.River Brahmaputra that flows\
@@ -63,40 +64,10 @@ var storeData = function () {
             predicting very heavy to extremely heavy rains in the state.\
             through the vital city of the northeastern state crossed danger mark on Monday."
         ],
-        Posted: ["des1", "des2","des3"]
+        Posted: ["Posted on 29 June,2019 //HeadLines: Category One", "Posted on 29 June,2019 //HeadLines: Category One","Posted on 29 June,2019 //HeadLines: Category One"]
     };
 
-    //let doublePrices = Object.fromEntries(
-    //    // convert to array, map, and then fromEntries gives back the object
-    //    Object.entries(prices).map(([key, value]) => [key, value * 2])
-    //);
-
-    //alert(doublePrices.meat); 
     window.localStorage.setItem('TV9', JSON.stringify(TV9));
-    window.localStorage.setItem('TV9title1', 'TV9 HeadLines');
-    window.localStorage.setItem('TV9title2', 'TV9 Business');
-    window.localStorage.setItem('TV9title3', 'TV9 Sports');
-
-    window.localStorage.setItem('TV9News1', 'The second attempt to launch the Chandrayaan 2 moon mission is likely to be made this month, sources in the Indian Space Research Organisation said today. The launch of Indias most ambitious space mission yet was aborted less than an hour before its scheduled lift-off at 2:51 am due to a technical snag in the rocket system, the ISRO said.');
-    window.localStorage.setItem('TV9News2', 'The second attempt to launch the Chandrayaan 2 moon mission is likely to be made this month, sources in the Indian Space Research Organisation said today. The launch of Indias most ambitious space mission yet was aborted less than an hour before its scheduled lift-off at 2:51 am due to a technical snag in the rocket system, the ISRO said.');
-    window.localStorage.setItem('TV9News3', 'The second attempt to launch the Chandrayaan 2 moon mission is likely to be made this month, sources in the Indian Space Research Organisation said today. The launch of Indias most ambitious space mission yet was aborted less than an hour before its scheduled lift-off at 2:51 am due to a technical snag in the rocket system, the ISRO said.');
-
-    window.localStorage.setItem('NDTVtitle1', 'NDTV HeadLines');
-    window.localStorage.setItem('NDTVtitle2', 'NDTV Business');
-    window.localStorage.setItem('NDTVtitle3', 'NDTV Sports');
-
-    window.localStorage.setItem('NDTVNews1', 'New Zealand gave a performance to be proud. They gave skill, effort and sheer bloody mindedness. When you give the best of yourself and you have no more to give, what more can you do?');
-    window.localStorage.setItem('NDTVNews2', 'New Zealand gave a performance to be proud. They gave skill, effort and sheer bloody mindedness. When you give the best of yourself and you have no more to give, what more can you do?');
-    window.localStorage.setItem('NDTVNews3', 'New Zealand gave a performance to be proud. They gave skill, effort and sheer bloody mindedness. When you give the best of yourself and you have no more to give, what more can you do?');
-
-    window.localStorage.setItem('AAJTAKtitle1', 'AAJTAK HeadLinese');
-    window.localStorage.setItem('AAJTAKtitle2', 'AAJTAK Business');
-    window.localStorage.setItem('AAJTAKtitle3', 'AAJTAK Sports');
-
-    window.localStorage.setItem('AAJTAKNews1', 'New Zealand gave a performance to be proud. They gave skill, effort and sheer bloody mindedness. When you give the best of yourself and you have no more to give, what more can you do?');
-    window.localStorage.setItem('AAJTAKNews2', 'New Zealand gave a performance to be proud. They gave skill, effort and sheer bloody mindedness. When you give the best of yourself and you have no more to give, what more can you do?');
-    window.localStorage.setItem('AAJTAKNews3', 'New Zealand gave a performance to be proud. They gave skill, effort and sheer bloody mindedness. When you give the best of yourself and you have no more to give, what more can you do?');
-
 
 }
 var loadFooter = function () {
@@ -204,16 +175,15 @@ var loadMainContent = function () {
     loadSectionContent();
 }
 
+//Creating Elements on document
 var loadSectionContent = function () {
     var sectionMainContent = document.getElementById('main-content');
-    //sectionMainContent.parentNode.removeChild(element);
-
+    
     for (var i = 0; i < 10; i++) {
 
-        //load three articles
         var article = document.createElement('article');
         article.id = "article" + i;
-        //article.className = "posts";
+        
         if (i == 9) {
             article.className = "poststhird";
         }
@@ -252,18 +222,28 @@ var loadSectionContent = function () {
 
         element.addEventListener(
             'click',
-            function () { window.open("https://www.w3schools.com", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500,width=400,height=400"); },
+            function () { ShowContentInPopUp(this)},
             false
         );
 
         sectionDiv.appendChild(element);
         article.appendChild(sectionDiv);
         sectionMainContent.appendChild(article);
-        
 
     }
 }
+function ShowContentInPopUp(id)
+{
+    var modal = document.getElementById("myModal");
+     modal.style.display = "block";
+     var span = document.getElementsByClassName("close")[0];
+     span.onclick = function() {
+     modal.style.display = "none";
+}
 
+}
+
+//Assigning Values to Title and Description
 var loadSectionContentByDropDown = function (selectedIndex) {
 
     let skillsSelect = document.getElementById("mySelect");
