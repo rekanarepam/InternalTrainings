@@ -6,6 +6,73 @@ window.onload = function () {
     storeData();
 };
 var storeData = function () {
+    let TV9 = {
+        title: ["HeadLines", "StateNews","International","National","ScienceAndTechnology","Food","Sports","Geography","History","Entertainment"],
+        Description: [
+            "Flood situation in Assam continues to deteriorate\
+            even further as the water level is rising at a speed\
+            of 2 - 3 cm per hour in Guwahati.River Brahmaputra that flows\
+            through the vital city of the northeastern state crossed danger mark on Monday.",
+            
+            
+            "Thiruvananthpuram: The India Meteorological Department (IMD)\
+            issued a red alert in six districts of Kerala from July 18,\
+            predicting very heavy to extremely heavy rains in the state.\
+            predicting very heavy to extremely heavy rains in the state.",
+
+            "Thiruvananthpuram: The India Meteorological Department (IMD)\
+            issued a red alert in six districts of Kerala from July 18,\
+            predicting very heavy to extremely heavy rains in the state.\
+            predicting very heavy to extremely heavy rains in the state.",
+
+            "Flood situation in Assam continues to deteriorate\
+            even further as the water level is rising at a speed\
+            of 2 - 3 cm per hour in Guwahati.River Brahmaputra that flows\
+            through the vital city of the northeastern state crossed danger mark on Monday.",
+
+
+            "Thiruvananthpuram: The India Meteorological Department (IMD)\
+            issued a red alert in six districts of Kerala from July 18,\
+            predicting very heavy to extremely heavy rains in the state.\
+            predicting very heavy to extremely heavy rains in the state.",
+
+            "Thiruvananthpuram: The India Meteorological Department (IMD)\
+            issued a red alert in six districts of Kerala from July 18,\
+            predicting very heavy to extremely heavy rains in the state.\
+            predicting very heavy to extremely heavy rains in the state.",
+
+            "Flood situation in Assam continues to deteriorate\
+            even further as the water level is rising at a speed\
+            of 2 - 3 cm per hour in Guwahati.River Brahmaputra that flows\
+            through the vital city of the northeastern state crossed danger mark on Monday.\
+            through the vital city of the northeastern state crossed danger mark on Monday.",
+
+
+            "Thiruvananthpuram: The India Meteorological Department (IMD)\
+            issued a red alert in six districts of Kerala from July 18,\
+            predicting very heavy to extremely heavy rains in the state.\
+            through the vital city of the northeastern state crossed danger mark on Monday.",
+
+            "Thiruvananthpuram: The India Meteorological Department (IMD)\
+            issued a red alert in six districts of Kerala from July 18,\
+            predicting very heavy to extremely heavy rains in the state.\
+            through the vital city of the northeastern state crossed danger mark on Monday.",
+
+            "Thiruvananthpuram: The India Meteorological Department (IMD)\
+            issued a red alert in six districts of Kerala from July 18,\
+            predicting very heavy to extremely heavy rains in the state.\
+            through the vital city of the northeastern state crossed danger mark on Monday."
+        ],
+        Posted: ["des1", "des2","des3"]
+    };
+
+    //let doublePrices = Object.fromEntries(
+    //    // convert to array, map, and then fromEntries gives back the object
+    //    Object.entries(prices).map(([key, value]) => [key, value * 2])
+    //);
+
+    //alert(doublePrices.meat); 
+    window.localStorage.setItem('TV9', JSON.stringify(TV9));
     window.localStorage.setItem('TV9title1', 'TV9 HeadLines');
     window.localStorage.setItem('TV9title2', 'TV9 Business');
     window.localStorage.setItem('TV9title3', 'TV9 Sports');
@@ -44,8 +111,7 @@ var loadHeader = function () {
     header.innerHTML = "NEWSFEED";
 
 
-    let yetAnotherDiv = document.createElement('div');
-    yetAnotherDiv.className = "yetanother";
+    let yetAnotherDiv = AddDiv('yetanother'); 
 
     let spanYetAnother = document.createElement('SPAN');
     spanYetAnother.innerText = "Yet another newsfeed";
@@ -58,12 +124,9 @@ var loadHeader = function () {
 
 var loadSideContent = function () {
 
-    var sideboxDiv = document.createElement("div");
-    sideboxDiv.className = "side-box";
+    var sideboxDiv = AddDiv('side-box');
 
-
-    var sidemarginDiv = document.createElement("div");
-    sidemarginDiv.className = "sidemargin";
+    var sidemarginDiv = AddDiv('sidemargin');
 
     var selectSpan = document.createElement("SPAN");
     selectSpan.innerText = "SELECT CATEGORY";
@@ -72,7 +135,7 @@ var loadSideContent = function () {
     sideboxDiv.appendChild(sidemarginDiv);
 
     //Create array of options to be added
-    var array = ["TV9", "NDTV", "AAJTAK"];
+    var array = ["TV9", "NDTV", "AAJTAK","EPSN","STAR","NTV","AASTHA","EETV","MAATV","MUSIC"];
 
     //Create and append select list
     var selectList = document.createElement("select");
@@ -96,7 +159,7 @@ var loadSideContent = function () {
         false
     );
 
-    var divSide = document.createElement("div");
+    var divSide =document.createElement("div");
     divSide.style = "margin-top:30px";
     var subscribeSpan = document.createElement("SPAN");
     subscribeSpan.innerText = "SUBSCRIBE";
@@ -113,6 +176,7 @@ var loadSideContent = function () {
     subscribeTxtBox.setAttribute("type", "text");
     subscribeTxtBox.setAttribute("name", "SUBSCRIBE");
     divSide2.appendChild(subscribeTxtBox);
+
     //Subscribe Button
     var subscribeButton = document.createElement("input");
     subscribeButton.className = "buttonSubscribe";
@@ -144,13 +208,13 @@ var loadSectionContent = function () {
     var sectionMainContent = document.getElementById('main-content');
     //sectionMainContent.parentNode.removeChild(element);
 
-    for (var i = 0; i < 3; i++) {
+    for (var i = 0; i < 10; i++) {
 
         //load three articles
         var article = document.createElement('article');
         article.id = "article" + i;
         //article.className = "posts";
-        if (i == 2) {
+        if (i == 9) {
             article.className = "poststhird";
         }
         else { article.className = "posts"; }
@@ -195,31 +259,36 @@ var loadSectionContent = function () {
         sectionDiv.appendChild(element);
         article.appendChild(sectionDiv);
         sectionMainContent.appendChild(article);
-        //
+        
 
     }
 }
 
 var loadSectionContentByDropDown = function (selectedIndex) {
-    var skillsSelect = document.getElementById("mySelect");
-    var selectedText = skillsSelect.options[skillsSelect.selectedIndex].text;
 
-    var title1 = document.getElementById("title0");
-    title1.innerText = window.localStorage.getItem(selectedText + "title1");//TV9+title+1
+    let skillsSelect = document.getElementById("mySelect");
+    let selectedText = skillsSelect.options[skillsSelect.selectedIndex].text;
+    
+    let TV9 = localStorage.getItem('TV9');
+    var TV9OBJ = JSON.parse(TV9);
 
-    var title2 = document.getElementById("title1");
-    title2.innerText = window.localStorage.getItem(selectedText + "title2");//TV9+title+1
+    for (var i = 0; i < 9; i++) {
 
-    var title3 = document.getElementById("title2");
-    title3.innerText = window.localStorage.getItem(selectedText + "title3");//TV9+title+1
+        var titleResult = TV9OBJ['title'][i];
+        var title = document.getElementById("title"+i);
+        title.innerText = titleResult;//TV9+title+1
 
-    var contentPara1 = document.getElementById("contentPara0");//TV9News1
-    contentPara1.innerText = window.localStorage.getItem(selectedText + "News1");//TV9+title+1
+        var descriptionResult = TV9OBJ['Description'][i];
+        var contentPara = document.getElementById("contentPara"+i);//TV9News1
+        contentPara.innerText = descriptionResult;
+    }
 
-    var contentPara2 = document.getElementById("contentPara1");//TV9News1
-    contentPara2.innerText = window.localStorage.getItem(selectedText + "News2");//TV9+title+1
 
-    var contentPara3 = document.getElementById("contentPara2");//TV9News1
-    contentPara3.innerText = window.localStorage.getItem(selectedText + "News3");//TV9+title+1
 
 }
+
+function AddDiv(className) {
+    let divElement = document.createElement('div');
+        divElement.className = className;
+        return divElement;
+};
