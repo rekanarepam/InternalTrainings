@@ -1,0 +1,47 @@
+body,
+ul,
+li,
+h1,
+h2 {
+    font-family: Helvetica, Arial, Serif;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background: #039be5;
+}
+
+
+h1 {
+    background: #ffcc00;
+    padding: 5px 10px;
+}
+
+h2 {
+    font-size: 1.3em;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #cccccc;
+}
+
+
+li {
+    padding: 5px;
+    cursor: pointer;
+    list-style-type: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+li:hover, .active {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+
+/* Contact List Module */
+#contact-list {
+    width: 170px;
+    border: 1px solid #4fc3fc;
+    color: white;
+    float: left;
+    margin-left: 10px;
+}
