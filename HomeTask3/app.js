@@ -1,15 +1,29 @@
 // ============== Model =========================
 
 class NewsChannel{
-  constructor(channelCode,articles){
-    this.channelCode = channelCode;
-    this.articles = articles;
+  constructor(channelCode){
+    this._channelCode = channelCode;
+    this._articles = [];
   }
-}
-class article
-{
-  constructor(author,title,description,url,urlToImage,publishedAt)
+  get channel()
   {
+    return this._channelCode;
+  }
+  set channel(channelCode)
+  {
+    this._channelCode = channelCode;
+  }
+  
+  getArticles(){
+  article
+
+  };
+}
+class Article extends NewsChannel
+{
+  constructor(channelCode,author,title,description,url,urlToImage,publishedAt)
+  {
+    super(channelCode);
     this.author = author;
     this.title = title;
     this.description = description;
@@ -19,6 +33,9 @@ class article
   }
 
 }
+
+// const BBC = new article("BBCNEWS","Adams","International","Description","url","urlToImage","PublishedTa");
+// console.log(BBC.channel);
 const contactsData = [
     {
       'fname': 'Anbu',
@@ -73,19 +90,25 @@ class NewsChannelCtrl{
   init(){
     this.NewChannelView.init();
   }
-    getNewsChannels = () =>
-    {
-      //This method will API call NEWS API using Promise and Fetch
-    }
+    // getNewsChannels = () =>
+    // {
+    //   //This method will API call NEWS API using Promise and Fetch
+    // }
+
+
+
 }
 
 // ============== View ========================= 
 class AddressBookView {
 	init() {
            //console.log("render HTML here");
-            this.renderContactListModule();
+            //this.renderContactListModule();
+            this.renderNewChannelModule();
+            console.log("render HTML here");
         }
         // -----------------------------------
+
     // RENDER 
     // -----------------------------------
     renderContactListModule() {
@@ -117,6 +140,7 @@ class AddressBookView {
 
   }
 
+  
 }
 // create an object from the class AddressBookView
 const addressBookView = new AddressBookView();
@@ -125,23 +149,63 @@ const addressBookView = new AddressBookView();
 const addressBookApp = new AddressBookCtrl(addressBookView);
 
 // App starting...
-addressBookApp.init();
+//addressBookApp.init();
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //News Channel view starts Here
 class NewsChannelView
 {
   init()
     {
+      console.log("Hi");
         this.renderNewChannelModule();
     }
     renderNewChannelModule()
     {
-      //model
-      const NewChannels = newChannelApp.getNewsChannels();
-
-    }   
+    var ArticlesReuslt = []; 
+    const ul = document.getElementById('articles');
+    const url = 'https://newsapi.org/v1/articles?source=the-verge&apiKey=49de02235d5b41bd987a58f1d1871071';
+    fetch(url)
+    .then((resp) => resp.json())
+    .then(function(data) {
+      console.log('Parsed Josn',data);
+      
+      let articles = data.articles;
+      console.log('authors',articles);
+      return articles.map(function(article) {
+        console.log('Parsed article Josn',article);
+        let articleObj = new Article(data.source,article.author,article.title,article.description,article.url,article.urlToImage,article.publishedAt);
+        console.log('data articleObj',articleObj);
+        ArticlesReuslt.push(articleObj);
+        
+        
+        let li = createNode('li'),
+            img = createNode('img'),
+            span = createNode('span');
+        img.src = article.urlToImage;
+        span.innerHTML = `${article.title} ${article.title}`;
+        append(li, img);
+        append(li, span);
+        append(ul, li);
+      })
+      console.log('Parsed result',ArticlesReuslt);
+    })
+    .catch(function(error) {
+      console.log(error);
+    });   
+  
+  
+    }
 }
 const newsChannelView = new NewsChannelView();
 const newChannelApp = new NewsChannelCtrl(newsChannelView);
 //NewChannel App starting
 newChannelApp.init();
+
+
+function createNode(element) {
+  return document.createElement(element);
+}
+
+function append(parent, el) {
+return parent.appendChild(el);
+}
