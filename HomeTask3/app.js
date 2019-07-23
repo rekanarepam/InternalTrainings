@@ -1,3 +1,4 @@
+const url = 'https://newsapi.org/v1/articles?source=the-verge&apiKey=49de02235d5b41bd987a58f1d1871071';
 // ============== Model =========================
 //Move this to another .js file
 class NewsChannel{
@@ -69,8 +70,8 @@ class NewsChannelView
     //Below module will create Header
     renderHeaderModule()
     {
-      const ul = document.getElementById('main-wrapper');
-      var mainwrapperDiv = createNode('main-wrapper');
+      
+      var mainwrapperDiv = GetElement('main-wrapper');
       var header = createNode('header');
       header.innerHTML = "NEWSFEED";
       let yetAnotherDiv = CreateDiv('yetanother'); 
@@ -87,7 +88,7 @@ class NewsChannelView
     {
       var mainDivElement = createNode('div');
       var sectionMain = createNode('section');
-      var mainwrapperDiv = document.getElementById('main-wrapper');//GetElement('main-wrapper');
+      var mainwrapperDiv = GetElement('main-wrapper');
       sectionMain.id = "main-content";
       append(mainDivElement,sectionMain);
       append(mainwrapperDiv,mainDivElement);
@@ -98,10 +99,7 @@ class NewsChannelView
     //Load Data with content
     renderSectionWithDataContentModule()
     {
-        var sectionMainContent = GetElement('main-content');
-        let ArticlesReuslt = []; 
-        const ul = document.getElementById('articles');
-        const url = 'https://newsapi.org/v1/articles?source=the-verge&apiKey=49de02235d5b41bd987a58f1d1871071';
+        
         fetch(url)
         .then((resp) => resp.json())
         .then(function(data) {
@@ -110,46 +108,10 @@ class NewsChannelView
           return articles.map(function(article) {
           
             let articleObj = new Article(data.source,article.author,article.title,article.description,article.url,article.urlToImage,article.publishedAt);
-          
-            ArticlesReuslt.push(articleObj);
 
-            var article = createNode('article');
-            article.className = "posts";
+            generateBody(articleObj);
             
-            var image = createNode('IMAGE');
-            image.className = 'thumbnail';
-            image.urlToImage = articleObj.urlToImage;
-            append(article,image);
             
-            var title = createNode("H1");
-            title.innerText = articleObj.title;
-            append(article,title);
-
-            var spanTextSmall = createNode("SPAN");
-            spanTextSmall.className = "txtSmall";
-            spanTextSmall.innerText = articleObj.publishedAt;
-            append(article,spanTextSmall);
-
-            var sectionDiv = createNode('div');
-            var contentPara = createNode('p');
-            contentPara.innerText = articleObj.description;
-            sectionDiv.appendChild(contentPara);
-
-            var btncontinue = createNode("input");
-            btncontinue.className = "button";
-            btncontinue.setAttribute("type", "Button");
-            btncontinue.setAttribute("value", "Continue Reading");
-            btncontinue.setAttribute("name", "Continue Reading");
-
-            btncontinue.addEventListener(
-                'click',
-                function () { ShowContentInPopUp(this)},
-                false
-            );
-
-          append(sectionDiv,btncontinue);
-          append(article,sectionDiv);
-          append(sectionMainContent,article);
             
           })
           
@@ -163,7 +125,7 @@ class NewsChannelView
 
       var sideboxDiv = CreateDiv('side-box');
       var sidemarginDiv = CreateDiv('sidemargin');
-      var selectSpan = CreateNode("SPAN");
+      var selectSpan = createNode("SPAN");
 
       selectSpan.innerText = "SELECT CATEGORY";
       append(sidemarginDiv,selectSpan);
@@ -173,14 +135,14 @@ class NewsChannelView
     var array = ["TV9", "NDTV", "AAJTAK","EPSN","STAR","NTV","AASTHA","EETV","MAATV","MUSIC"];
 
     //Create and append select list
-    var selectList = CreateNode("select");
+    var selectList = createNode("select");
     selectList.id = "mySelect";
     selectList.className = "select";
     append(sideboxDiv,selectList);
 
     //Create and append the options
     for (var i = 0; i < array.length; i++) {
-        var option = CreateNode("option");
+        var option = createNode("option");
         option.value = array[i];
         option.text = array[i];
         append(selectList,option);
@@ -221,38 +183,7 @@ class NewsChannelView
     append(mainSection,sideboxDiv);
 
     }
-    renderNewChannelModule()
-    {
-    let ArticlesReuslt = []; 
-    const ul = document.getElementById('articles');
-    const url = 'https://newsapi.org/v1/articles?source=the-verge&apiKey=49de02235d5b41bd987a58f1d1871071';
-    fetch(url)
-    .then((resp) => resp.json())
-    .then(function(data) {
-      let articles = data.articles;
-      
-      return articles.map(function(article) {
-      
-        let articleObj = new Article(data.source,article.author,article.title,article.description,article.url,article.urlToImage,article.publishedAt);
-      
-        ArticlesReuslt.push(articleObj);
-        
-        let li = createNode('li'),
-            img = createNode('img'),
-            span = createNode('span');
-        img.src = article.urlToImage;
-        span.innerHTML = `${article.title} ${article.title}`;
-        append(li, img);
-        append(li, span);
-        append(ul, li);
-      })
-      
-    })
-    .catch(function(error) {
-      console.log(error);
-    }); 
-  
-    }
+    
 }
 const newsChannelView = new NewsChannelView();
 const newChannelApp = new NewsChannelCtrl(newsChannelView);
@@ -277,7 +208,7 @@ function GetElement(id)
   return document.getElementById(id);
 }
 function removeRow(input) {
-  document.getElementById('content').removeChild(input.parentNode);
+  document.getElementById(input).removeChild(input.parentNode);
 }
 function ShowContentInPopUp(id)
 {
@@ -287,4 +218,77 @@ function ShowContentInPopUp(id)
         span.onclick = function() {
         modal.style.display = "none";
     }
+}
+function loadSectionContentByDropDown(selectedIndex)
+{
+
+  var mainDivElement = createNode('div');
+      var sectionMain = createNode('section');
+      var mainwrapperDiv = GetElement('main-wrapper');
+      sectionMain.id = "main-content";
+      append(mainDivElement,sectionMain);
+      append(mainwrapperDiv,mainDivElement);
+      
+  //removeRow('main-wrapper');
+  var element = document.getElementById('main-content');
+    element.parentNode.removeChild(element);
+    fetch(url)
+    .then((resp) => resp.json())
+    .then(function(data) {
+      let articles = data.articles;
+      
+      return articles.map(function(article) {
+      
+        let articleObj = new Article(data.source,article.author,article.title,article.description,article.url,article.urlToImage,article.publishedAt);
+
+        generateBody(articleObj);
+        
+        
+        
+      })
+      
+    })
+    .catch(function(error) {
+      console.log(error);
+    }); 
+}
+function generateBody(articleObj){
+            var sectionMainContent = GetElement('main-content');
+            var article = createNode('article');
+            article.className = "posts";
+            
+            var image = createNode('IMAGE');
+            image.className = 'thumbnail';
+            image.urlToImage = articleObj.urlToImage;
+            append(article,image);
+            
+            var title = createNode("H1");
+            title.innerText = articleObj.title;
+            append(article,title);
+
+            var spanTextSmall = createNode("SPAN");
+            spanTextSmall.className = "txtSmall";
+            spanTextSmall.innerText = articleObj.publishedAt;
+            append(article,spanTextSmall);
+
+            var sectionDiv = createNode('div');
+            var contentPara = createNode('p');
+            contentPara.innerText = articleObj.description;
+            sectionDiv.appendChild(contentPara);
+
+            var btncontinue = createNode("input");
+            btncontinue.className = "button";
+            btncontinue.setAttribute("type", "Button");
+            btncontinue.setAttribute("value", "Continue Reading");
+            btncontinue.setAttribute("name", "Continue Reading");
+
+            btncontinue.addEventListener(
+                'click',
+                function () { ShowContentInPopUp(this)},
+                false
+            );
+
+          append(sectionDiv,btncontinue);
+          append(article,sectionDiv);
+          append(sectionMainContent,article);
 }
